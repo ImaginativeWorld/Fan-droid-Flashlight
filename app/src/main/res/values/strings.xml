@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Fan-droid with Flashlight</string>
+
+    <string name="permlab_flashlight">Flashlight permission</string>
+    <string name="permdesc_flashlight">This will needed to turn on and turn off the Flashlight.</string>
+    <string name="color_picker_title">Select a Color</string>
+    <string name="txt_fan_rpm">%d RPM</string>
+
+    <string name="action_change_fan_color">Change Fan Color</string>
+    <string name="pref_fan_speed">pref_fan_speed</string>
+    <string name="pref_fan_sound">pref_fan_sound</string>
+    <string name="pref_fan_color">pref_fan_color</string>
+    <string name="pref_fan_model">pref_fan_model</string>
+
+    <string name="action_rate">Rate On Google Play</string>
+    <string name="action_about">About</string>
+    <string name="action_contact_us">Contact with us</string>
+    <string name="action_change_fan_model">Next Fan Model</string>
+
+    <string name="about_description">It is a Fan simulator app with bonus Flashlight feature.</string>
+    <string name="website">http://imaginativeworld.org</string>
+    <string name="copyrights1">Copyright © Imaginative World.\nThis open-source product is licensed under MPL 2.0.</string>
+    <string name="url_market">market://details?id=org.imaginativeworld.fan</string>
+
+    <string name="txt_okey">Okey</string>
+    <string name="txt_fan_image">The Fan</string>
+</resources>

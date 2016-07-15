@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <Button
+            android:id="@+id/color1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#f44336" />
+
+        <Button
+            android:id="@+id/color2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#e91e63" />
+
+        <Button
+            android:id="@+id/color3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#9c27b0" />
+
+        <Button
+            android:id="@+id/color4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#673ab7" />
+
+        <Button
+            android:id="@+id/color5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#3f51b5" />
+
+        <Button
+            android:id="@+id/color6"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#2196f3" />
+
+        <Button
+            android:id="@+id/color7"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#03a9f4" />
+
+        <Button
+            android:id="@+id/color8"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#00bcd4" />
+
+        <Button
+            android:id="@+id/color9"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#009688" />
+
+        <Button
+            android:id="@+id/color10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#4caf50" />
+
+        <Button
+            android:id="@+id/color11"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#8bc34a" />
+
+        <Button
+            android:id="@+id/color12"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#cddc39" />
+
+        <Button
+            android:id="@+id/color13"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#ffeb3b" />
+
+        <Button
+            android:id="@+id/color14"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#ffc107" />
+
+        <Button
+            android:id="@+id/color15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#ff9800" />
+
+        <Button
+            android:id="@+id/color16"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#ff5722" />
+
+        <Button
+            android:id="@+id/color17"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#795548" />
+
+        <Button
+            android:id="@+id/color18"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#9e9e9e" />
+
+        <Button
+            android:id="@+id/color19"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#607d8b" />
+
+        <Button
+            android:id="@+id/color20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pickerButtonWeight"
+            android:layout_margin="@dimen/pickerButtonMargin"
+            android:background="#000" />
+    </LinearLayout>
+</ScrollView>
