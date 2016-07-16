@@ -9,10 +9,41 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
+        android:id="@+id/txtVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@string/version_txt"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/about_description"
         android:textSize="16sp" />
+
+    <View style="@style/Divider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/open_source_license"
+        android:textSize="16sp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contribute_txt"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/src_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/github"
+        android:textColor="@color/light_blue_800"
+        android:textSize="18sp" />
 
     <View style="@style/Divider" />
 

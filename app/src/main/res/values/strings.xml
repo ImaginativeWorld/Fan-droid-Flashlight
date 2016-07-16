@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fan-droid with Flashlight</string>
+    <string name="app_name">Fan-droid Flashlight</string>
 
     <string name="permlab_flashlight">Flashlight permission</string>
     <string name="permdesc_flashlight">This will needed to turn on and turn off the Flashlight.</string>
@@ -19,9 +19,14 @@
 
     <string name="about_description">It is a Fan simulator app with bonus Flashlight feature.</string>
     <string name="website">http://imaginativeworld.org</string>
-    <string name="copyrights1">Copyright © Imaginative World.\nThis open-source product is licensed under MPL 2.0.</string>
+    <string name="website_github">http://bit.ly/githubfan</string>
+    <string name="copyrights1">Copyright © Imaginative World.</string>
     <string name="url_market">market://details?id=org.imaginativeworld.fan</string>
 
     <string name="txt_okey">Okey</string>
     <string name="txt_fan_image">The Fan</string>
+    <string name="open_source_license">This open-source product is licensed under MPL 2.0.</string>
+    <string name="github">GitHub</string>
+    <string name="contribute_txt">Contribute to this project here:</string>
+    <string name="version_txt">Version %s</string>
 </resources>

@@ -7,6 +7,8 @@
 package org.imaginativeworld.fan;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +19,7 @@ import android.widget.TextView;
 public class aboutActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnOk;
-    TextView dev_url;
+    TextView dev_url, txtVersion, src_url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,16 @@ public class aboutActivity extends AppCompatActivity implements View.OnClickList
 
         btnOk = (Button) findViewById(R.id.btnOk);
         btnOk.setOnClickListener(aboutActivity.this);
+
         dev_url = (TextView) findViewById(R.id.dev_url);
         dev_url.setOnClickListener(aboutActivity.this);
+
+        src_url = (TextView) findViewById(R.id.src_url);
+        src_url.setOnClickListener(aboutActivity.this);
+
+        txtVersion = (TextView) findViewById(R.id.txtVersion);
+        txtVersion.setText(String.format(getString(R.string.version_txt), BuildConfig.VERSION_NAME));
+
 
     }
 
@@ -48,6 +58,15 @@ public class aboutActivity extends AppCompatActivity implements View.OnClickList
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW,
                         Uri.parse(getString(R.string.website)));
                 startActivity(browserIntent);
+
+                break;
+
+            case R.id.src_url:
+
+                //Go to the url
+                Intent browserIntent_src = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(getString(R.string.website_github)));
+                startActivity(browserIntent_src);
 
                 break;
         }
