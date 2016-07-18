@@ -2,6 +2,15 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * <p/>
+ * Here Flashlight codes are brought from:
+ * https://github.com/jbutewicz/Flashlight-by-Joe
+ * <p/>
+ * Here Flashlight codes are brought from:
+ * https://github.com/jbutewicz/Flashlight-by-Joe
+ * <p/>
+ * Here Flashlight codes are brought from:
+ * https://github.com/jbutewicz/Flashlight-by-Joe
  */
 
 /**
@@ -39,7 +48,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -53,11 +64,11 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, SurfaceHolder.Callback, View.OnTouchListener {
-    //PreviewSurface.Callback,
+
     final int TOTAL_FAN_MODEL = 7;
 
     ImageView imgFan;
-    boolean animOn, hasFlash, isSoundOn;
+    boolean animOn, hasFlash, isSoundOn, isStart = false, isEnd = false, isLast;
     RotateAnimation anim;
     FloatingActionButton fab, fabLight, fab_fan_sound;
     int delay;
@@ -68,10 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Flash Light variables/objects
      */
-    boolean on = false;
-    //boolean mCameraReady = false; // to make sure we don't turn on light when preview surface resizes
     String mCameraId;
-    //PreviewSurface mSurface;
     boolean torchRequest = false;
 
     int count = 0;
@@ -82,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     MediaPlayer mp;
 
-    //CheckedTextView chkBoxSound;
     TextView txtRPM;
 
     SharedPreferences sharedPref;
@@ -145,8 +152,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 e.printStackTrace();
             }
 
-            // Last
-            //mSurface.setCallback(MainActivity.this);
         }
 
         /**
@@ -178,9 +183,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         0.5f
                 );
 
+
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(Animation.INFINITE);
         anim.setDuration(delay);
+        anim.setFillAfter(true);
 
 
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -200,6 +207,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onAnimationRepeat(Animation animation) {
+
+                if (isEnd) {
+                    if (isLast) {
+
+                        isLast = false;
+                        anim.setInterpolator(new DecelerateInterpolator());
+
+                    } else {
+
+                        imgFan.clearAnimation();
+
+                        isEnd = false;
+
+                        try {
+                            if (mp.isPlaying()) {
+                                mp.pause();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                if (isStart) {
+                    anim.setInterpolator(new LinearInterpolator());
+                    isStart = false;
+                }
 
             }
         });
@@ -238,6 +272,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (!animOn) {
 
+                    anim.setDuration(delay);
+
+                    isStart = true;
+                    isLast = false;
+                    isEnd = false;
+
+                    anim.setInterpolator(new AccelerateInterpolator());
+
                     imgFan.startAnimation(anim);
 
                     try {
@@ -252,15 +294,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 } else {
 
-                    imgFan.clearAnimation();
-
-                    try {
-                        if (mp.isPlaying()) {
-                            mp.pause();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    isLast = true;
+                    isEnd = true;
 
                 }
             }
