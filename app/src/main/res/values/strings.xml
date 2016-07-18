@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Fan-droid Flashlight</string>
+    <string name="TAG">FF-console</string>
 
     <string name="permlab_flashlight">Flashlight permission</string>
-    <string name="permdesc_flashlight">This will needed to turn on and turn off the Flashlight.</string>
-    <string name="color_picker_title">Select a Color</string>
+    <string name="permdesc_flashlight">This will needed to turn on/off the Flashlight.</string>
+    <string name="color_picker_title">Pick a Color</string>
     <string name="txt_fan_rpm">%d RPM</string>
 
     <string name="action_change_fan_color">Change Fan Color</string>
@@ -29,4 +30,6 @@
     <string name="github">GitHub</string>
     <string name="contribute_txt">Contribute to this project here:</string>
     <string name="version_txt">Version %s</string>
+    <string name="Color">Color</string>
+    <string name="picked_color">Picked Color</string>
 </resources>

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.imaginativeworld.fan.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:id="@+id/context_main_layout">
 
     <RelativeLayout
         android:id="@+id/topPanel"
@@ -53,11 +54,6 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:src="@drawable/fan1" />
-
-    <org.imaginativeworld.fan.PreviewSurface
-        android:id="@+id/surfaceView"
-        android:layout_width="1dp"
-        android:layout_height="1dp" />
 
     <!--  The following is a view to simply cover the preview surface  -->
     <View
