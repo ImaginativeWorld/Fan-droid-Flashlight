@@ -423,7 +423,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void flashOnApp() {
 
-        Log.d(getString(R.string.TAG), "Clicked");
+        // Log.d(getString(R.string.TAG), "Clicked");
 
         setParams(getmCameraActivity().getParameters());
 
