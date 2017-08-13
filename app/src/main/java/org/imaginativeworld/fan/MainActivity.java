@@ -33,6 +33,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MotionEventCompat;
@@ -65,7 +66,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, SurfaceHolder.Callback, View.OnTouchListener {
 
-    final int TOTAL_FAN_MODEL = 7;
+    final int TOTAL_FAN_MODEL = 8;
 
     ImageView imgFan;
     boolean animOn, hasFlash, isSoundOn, isStart = false, isEnd = false, isLast;
@@ -103,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * The View
      */
     ViewGroup rootView;
+
+    Vibrator vibrator;
 
 
     @Override
@@ -144,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             RelativeLayout.LayoutParams lpView = new RelativeLayout.LayoutParams(dpToPx(1), dpToPx(1));
             preview = new SurfaceView(MainActivity.this);
             preview.setLayoutParams(lpView);
+
             context_main_layout.addView(preview);
 
             try {
@@ -153,6 +157,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         }
+
+
+        /**
+         * Get instance of Vibrator from current Context
+         */
+        vibrator  = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         /**
          * Now Load settings form preference ans set
@@ -196,12 +206,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 animOn = true;
                 fab.setImageResource(android.R.drawable.ic_media_pause);
+
+                long[] pattern = {0, 100, 0};
+
+                vibrator.vibrate(pattern, 0);
+
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
                 animOn = false;
                 fab.setImageResource(android.R.drawable.ic_media_play);
+
+                vibrator.cancel();
 
             }
 
@@ -647,24 +665,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void setFanModel(int modelNo) {
         switch (modelNo) {
             case 1:
-                imgFan.setImageResource(R.drawable.fan1);
+                imgFan.setImageResource(R.drawable.fan8);
                 break;
             case 2:
-                imgFan.setImageResource(R.drawable.fan2);
+                imgFan.setImageResource(R.drawable.fan1);
                 break;
             case 3:
-                imgFan.setImageResource(R.drawable.fan3);
+                imgFan.setImageResource(R.drawable.fan2);
                 break;
             case 4:
-                imgFan.setImageResource(R.drawable.fan4);
+                imgFan.setImageResource(R.drawable.fan3);
                 break;
             case 5:
-                imgFan.setImageResource(R.drawable.fan5);
+                imgFan.setImageResource(R.drawable.fan4);
                 break;
             case 6:
-                imgFan.setImageResource(R.drawable.fan6);
+                imgFan.setImageResource(R.drawable.fan5);
                 break;
             case 7:
+                imgFan.setImageResource(R.drawable.fan6);
+                break;
+            case 8:
                 imgFan.setImageResource(R.drawable.fan7);
                 break;
         }
