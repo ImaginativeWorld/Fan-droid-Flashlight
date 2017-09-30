@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/context_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.imaginativeworld.fan.MainActivity"
-    tools:showIn="@layout/activity_main"
-    android:id="@+id/context_main_layout">
+    tools:showIn="@layout/activity_main">
 
     <RelativeLayout
         android:id="@+id/topPanel"
@@ -53,7 +53,7 @@
         android:contentDescription="@string/txt_fan_image"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:src="@drawable/fan1" />
+        android:src="@drawable/fan8" />
 
     <!--  The following is a view to simply cover the preview surface  -->
     <View

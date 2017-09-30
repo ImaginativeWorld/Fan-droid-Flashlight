@@ -41,3 +41,4 @@ captures/
 
 # Signing file
 signing.properties
+keystore.properties

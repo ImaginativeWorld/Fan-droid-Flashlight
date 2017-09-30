@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.camera2.CameraManager;
@@ -66,25 +67,21 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, SurfaceHolder.Callback, View.OnTouchListener {
 
+    static Camera mCameraActivity;
     final int TOTAL_FAN_MODEL = 8;
-
     ImageView imgFan;
     boolean animOn, hasFlash, isSoundOn, isStart = false, isEnd = false, isLast;
     RotateAnimation anim;
     FloatingActionButton fab, fabLight, fab_fan_sound;
     int delay;
     String strColor;
-
     SeekBar seekBar;
-
     /**
      * Flash Light variables/objects
      */
     String mCameraId;
     boolean torchRequest = false;
-
     int count = 0;
-    static Camera mCameraActivity;
     Parameters params;
     SurfaceView preview;
     SurfaceHolder mHolder;
@@ -107,6 +104,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Vibrator vibrator;
 
+    boolean isVibrate = true;
+
+    static void turnMotorolaOn() {
+        DroidLED led;
+        try {
+            led = new DroidLED();
+            led.enable(true);
+            //AppGlobals.setIsFlashOn(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Turns the LED off for some Motorola phones.
+    static void turnMotorolaOff() {
+        DroidLED led;
+        try {
+            led = new DroidLED();
+            led.enable(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Getters and setters for mCameraActivity.
+    public static Camera getmCameraActivity() {
+        return mCameraActivity;
+    }
+
+    public static void setmCameraActivity(Camera mCameraActivity) {
+        MainActivity.mCameraActivity = mCameraActivity;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,9 +236,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 animOn = true;
                 fab.setImageResource(android.R.drawable.ic_media_pause);
 
-                long[] pattern = {0, 100, 0};
-
-                vibrator.vibrate(pattern, 0);
+                if (isVibrate) {
+                    long[] pattern = {0, 100, 0};
+                    vibrator.vibrate(pattern, 0);
+                }
 
             }
 
@@ -388,7 +418,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     void setTorchIconStyle(boolean isOn) {
         if (isOn) {
             fabLight.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
@@ -398,7 +427,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fabLight.setColorFilter(Color.parseColor("#263238"));
         }
     }
-
 
     /**
      * Turns the LED on when the button on the app is pressed.
@@ -473,13 +501,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (flashModes.contains(Camera.Parameters.FLASH_MODE_TORCH)) {
                     getParams().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                     getmCameraActivity().setParameters(getParams());
-                    Log.d(getString(R.string.TAG), "Turned On");
+                    //Log.d(getString(R.string.TAG), "Turned On");
                 } else {
                     getParams().setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 
                     getmCameraActivity().setParameters(getParams());
 
-                    Log.d(getString(R.string.TAG), "Turned Off");
+                    //Log.d(getString(R.string.TAG), "Turned Off");
 
                     try {
                         getmCameraActivity().autoFocus(new Camera.AutoFocusCallback() {
@@ -494,18 +522,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
             }
-        }
-    }
-
-
-    static void turnMotorolaOn() {
-        DroidLED led;
-        try {
-            led = new DroidLED();
-            led.enable(true);
-            //AppGlobals.setIsFlashOn(true);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -527,28 +543,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getmCameraActivity().stopPreview();
         getmCameraActivity().release();
         setmCameraActivity(null);
-    }
-
-
-    // Turns the LED off for some Motorola phones.
-    static void turnMotorolaOff() {
-        DroidLED led;
-        try {
-            led = new DroidLED();
-            led.enable(false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    // Getters and setters for mCameraActivity.
-    public static Camera getmCameraActivity() {
-        return mCameraActivity;
-    }
-
-    public static void setmCameraActivity(Camera mCameraActivity) {
-        MainActivity.mCameraActivity = mCameraActivity;
     }
 
     // Getters and setters for params.
@@ -582,6 +576,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (Exception e) {
             // NOTE: didn't think need any exception here
         }
+
+        /**
+         * Stop Vibrator
+         */
+        //vibrator.cancel();
     }
 
     @Override
@@ -705,7 +704,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_change_fan_color) {
+        if (id == R.id.action_change_vibration) {
+
+            if (isVibrate) {
+                isVibrate = false;
+
+                vibrator.cancel();
+
+                item.setIcon(R.drawable.ic_vibration_off_black_24dp);
+
+
+            } else {
+                isVibrate = true;
+
+                item.setIcon(R.drawable.ic_vibration_black_24dp);
+
+                if (animOn) {
+                    long[] pattern = {0, 100, 0};
+                    vibrator.vibrate(pattern, 0);
+                }
+            }
+
+        } else if (id == R.id.action_change_fan_color) {
 
             Intent color_intent = new Intent(MainActivity.this, colorPicker.class);
             color_intent.putExtra(getString(R.string.Color), strColor);

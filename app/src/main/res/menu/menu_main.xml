@@ -3,32 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.imaginativeworld.fan.MainActivity">
     <item
-        android:id="@+id/action_change_fan_color"
+        android:id="@+id/action_change_vibration"
+        android:icon="@drawable/ic_vibration_black_24dp"
         android:orderInCategory="1"
+        android:title="@string/action_change_vibration"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_change_fan_color"
+        android:orderInCategory="2"
         android:title="@string/action_change_fan_color"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_change_fan_model"
-        android:orderInCategory="1"
+        android:orderInCategory="3"
         android:title="@string/action_change_fan_model"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_rate"
-        android:orderInCategory="2"
+        android:orderInCategory="4"
         android:title="@string/action_rate"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_contact_us"
-        android:orderInCategory="3"
+        android:orderInCategory="5"
         android:title="@string/action_contact_us"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_about"
-        android:orderInCategory="4"
+        android:orderInCategory="6"
         android:title="@string/action_about"
         app:showAsAction="never" />
 
