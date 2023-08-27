@@ -11,6 +11,18 @@
  * <p/>
  * Here Flashlight codes are brought from:
  * https://github.com/jbutewicz/Flashlight-by-Joe
+ * <p>
+ * Here Flashlight codes are brought from:
+ * https://github.com/jbutewicz/Flashlight-by-Joe
+ * <p>
+ * Here Flashlight codes are brought from:
+ * https://github.com/jbutewicz/Flashlight-by-Joe
+ * <p>
+ * Here Flashlight codes are brought from:
+ * https://github.com/jbutewicz/Flashlight-by-Joe
+ * <p>
+ * Here Flashlight codes are brought from:
+ * https://github.com/jbutewicz/Flashlight-by-Joe
  */
 
 /**
@@ -26,7 +38,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.camera2.CameraManager;
@@ -36,10 +47,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -61,9 +68,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MotionEventCompat;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.IOException;
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, SurfaceHolder.Callback, View.OnTouchListener {
 
@@ -191,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /**
          * Get instance of Vibrator from current Context
          */
-        vibrator  = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         /**
          * Now Load settings form preference ans set
@@ -471,16 +483,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Log.d(getString(R.string.TAG), "Clicked");
 
-        setParams(getmCameraActivity().getParameters());
+        setCameraParams(getmCameraActivity().getParameters());
 
-        List<String> flashModes = getParams().getSupportedFlashModes();
+        List<String> flashModes = getCameraParams().getSupportedFlashModes();
 
         if (flashModes == null) {
             return;
         } else {
             if (count == 0) {
-                getParams().setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-                getmCameraActivity().setParameters(getParams());
+                getCameraParams().setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                getmCameraActivity().setParameters(getCameraParams());
                 //preview = (SurfaceView) findViewById(R.id.preview);
                 mHolder = preview.getHolder();
                 mHolder.addCallback(MainActivity.this);
@@ -494,18 +506,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
 
-            String flashMode = getParams().getFlashMode();
+            String flashMode = getCameraParams().getFlashMode();
 
             if (!Camera.Parameters.FLASH_MODE_TORCH.equals(flashMode)) {
 
                 if (flashModes.contains(Camera.Parameters.FLASH_MODE_TORCH)) {
-                    getParams().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-                    getmCameraActivity().setParameters(getParams());
+                    getCameraParams().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    getmCameraActivity().setParameters(getCameraParams());
                     //Log.d(getString(R.string.TAG), "Turned On");
                 } else {
-                    getParams().setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+                    getCameraParams().setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 
-                    getmCameraActivity().setParameters(getParams());
+                    getmCameraActivity().setParameters(getCameraParams());
 
                     //Log.d(getString(R.string.TAG), "Turned Off");
 
@@ -546,11 +558,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // Getters and setters for params.
-    public Parameters getParams() {
+    public Parameters getCameraParams() {
         return params;
     }
 
-    public void setParams(Parameters params) {
+    public void setCameraParams(Parameters params) {
         this.params = params;
     }
 
@@ -727,7 +739,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (id == R.id.action_change_fan_color) {
 
-            Intent color_intent = new Intent(MainActivity.this, colorPicker.class);
+            Intent color_intent = new Intent(MainActivity.this, ColorPickerActivity.class);
             color_intent.putExtra(getString(R.string.Color), strColor);
             startActivityForResult(color_intent, 100);
 
@@ -735,7 +747,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (id == R.id.action_about) {
 
-            Intent about_intent = new Intent(MainActivity.this, aboutActivity.class);
+            Intent about_intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(about_intent);
 
             return true;
@@ -810,32 +822,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        int id = v.getId();
+        if (id == R.id.fab_fan_sound) {
+            if (isSoundOn) {
+                isSoundOn = false;
+                fab_fan_sound.setImageResource(R.drawable.ic_volume_off_black_24dp);
 
-            case R.id.fab_fan_sound:
-
-                if (isSoundOn) {
-                    isSoundOn = false;
-                    fab_fan_sound.setImageResource(R.drawable.ic_volume_off_black_24dp);
-
-                    if (mp.isPlaying()) {
-                        mp.pause();
-                    }
-                } else {
-                    isSoundOn = true;
-                    fab_fan_sound.setImageResource(R.drawable.ic_volume_up_black_24dp);
-
-                    if (animOn)
-                        mp.start();
-
+                if (mp.isPlaying()) {
+                    mp.pause();
                 }
+            } else {
+                isSoundOn = true;
+                fab_fan_sound.setImageResource(R.drawable.ic_volume_up_black_24dp);
 
-                break;
-            case R.id.txtRPM:
+                if (animOn)
+                    mp.start();
 
-                Toast.makeText(MainActivity.this, "Revolutions Per Minute", Toast.LENGTH_LONG).show();
-
-                break;
+            }
+        } else if (id == R.id.txtRPM) {
+            Toast.makeText(MainActivity.this, "Revolutions Per Minute", Toast.LENGTH_LONG).show();
         }
     }
 
