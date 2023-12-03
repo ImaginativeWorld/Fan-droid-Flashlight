@@ -5,24 +5,6 @@
  * <p/>
  * Here Flashlight codes are brought from:
  * https://github.com/jbutewicz/Flashlight-by-Joe
- * <p/>
- * Here Flashlight codes are brought from:
- * https://github.com/jbutewicz/Flashlight-by-Joe
- * <p/>
- * Here Flashlight codes are brought from:
- * https://github.com/jbutewicz/Flashlight-by-Joe
- * <p>
- * Here Flashlight codes are brought from:
- * https://github.com/jbutewicz/Flashlight-by-Joe
- * <p>
- * Here Flashlight codes are brought from:
- * https://github.com/jbutewicz/Flashlight-by-Joe
- * <p>
- * Here Flashlight codes are brought from:
- * https://github.com/jbutewicz/Flashlight-by-Joe
- * <p>
- * Here Flashlight codes are brought from:
- * https://github.com/jbutewicz/Flashlight-by-Joe
  */
 
 /**
@@ -758,9 +740,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (id == R.id.action_rate) {
 
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(getResources().getString(R.string.url_market)));
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getResources().getString(R.string.url_market)));
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(this, "No app found to open the link!", Toast.LENGTH_SHORT)
+                        .show();
+            }
 
         } else if (id == R.id.action_change_fan_model) {
 

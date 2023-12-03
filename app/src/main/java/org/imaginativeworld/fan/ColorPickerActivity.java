@@ -23,7 +23,7 @@ import java.lang.reflect.Field;
 
 public class ColorPickerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button[] colorBtn = new Button[21];
+    Button[] colorBtn = new Button[20];
     Button btnOK, colorPreview;
     String color;
     int __id = 0;
@@ -68,10 +68,28 @@ public class ColorPickerActivity extends AppCompatActivity implements View.OnCli
         layoutParams = new LinearLayout.LayoutParams(__width / 5, __width / 5);
         layoutParams.setMargins(__margin, __margin, __margin, __margin);
 
-        Class cls = R.id.class;
+        colorBtn[0] = (Button) findViewById(R.id.color1);
+        colorBtn[1] = (Button) findViewById(R.id.color2);
+        colorBtn[2] = (Button) findViewById(R.id.color3);
+        colorBtn[3] = (Button) findViewById(R.id.color4);
+        colorBtn[4] = (Button) findViewById(R.id.color5);
+        colorBtn[5] = (Button) findViewById(R.id.color6);
+        colorBtn[6] = (Button) findViewById(R.id.color7);
+        colorBtn[7] = (Button) findViewById(R.id.color8);
+        colorBtn[8] = (Button) findViewById(R.id.color9);
+        colorBtn[9] = (Button) findViewById(R.id.color10);
+        colorBtn[10] = (Button) findViewById(R.id.color11);
+        colorBtn[11] = (Button) findViewById(R.id.color12);
+        colorBtn[12] = (Button) findViewById(R.id.color13);
+        colorBtn[13] = (Button) findViewById(R.id.color14);
+        colorBtn[14] = (Button) findViewById(R.id.color15);
+        colorBtn[15] = (Button) findViewById(R.id.color16);
+        colorBtn[16] = (Button) findViewById(R.id.color17);
+        colorBtn[17] = (Button) findViewById(R.id.color18);
+        colorBtn[18] = (Button) findViewById(R.id.color19);
+        colorBtn[19] = (Button) findViewById(R.id.color20);
 
-        for (int i = 1; i <= 20; i++) {
-            colorBtn[i] = (Button) findViewById(getResId("color" + String.valueOf(i), cls));
+        for (int i = 0; i <= 19; i++) {
             colorBtn[i].setOnClickListener(ColorPickerActivity.this);
             colorBtn[i].setLayoutParams(layoutParams);
         }
